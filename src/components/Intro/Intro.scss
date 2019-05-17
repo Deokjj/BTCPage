@@ -1,4 +1,69 @@
+@import '../globalStyle';
 .Intro{
   height: 100vh;
-  width: 100%;
+  background: rgb(15,183,134);
+  background: linear-gradient(135deg, rgba(15,183,134,1) 0%, rgba(176,223,119,1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .IntroHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-weight: $semiBoldFont;
+    font-size: $mediumFont;
+    color: $white;
+    .faIcon{
+      font-size: $smallFont;
+    }
+  }
+  
+  .IntroContent{
+    display: flex;
+    
+    & > *{
+      flex-basis: 50%
+    }
+    
+    .IntroLeft{
+      display: flex;
+      flex-flow: column;
+      align-items: flex-start;
+      .IntroMessage{
+        height: 32px;
+        background-color: rgba(217,252,255,0.3);
+        border-radius: 16px;
+        color: $white;
+        display: flex;
+        align-items: center;
+        .messageType{
+          margin-left: 8px;
+          padding: 0 8px;
+          background-color: rgb(15,183,134);
+          border-radius: 8px;
+          font-weight: $boldFont;
+        }
+        .message{
+          margin: 0 12px;
+        }
+      }
+      .IntroTitle{
+        margin: 48px 0;
+        .title{
+          color: $white;
+          font-size: $largeFont;
+          margin: 16px 0;
+        }
+        .subTitle{
+          color:$offWhite;
+          font-size: $smallFont;
+        }
+      }
+    }
+  }
+  
+  .IntroFooterBuffer{
+    height: 65px;
+  }
 }
