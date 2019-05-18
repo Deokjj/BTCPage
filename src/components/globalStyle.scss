@@ -17,10 +17,13 @@ $semiBoldFont: 500;
 $boldFont    : 600;
 
 //Most of the Smartphones Mobiles (Portrait)
-$mobile-portrait: "(max-width: 480px)";
+// max-width: 480px
+$mobile-breakPoint : 480px;
 //Low Resolution Tablets, Mobiles (Landscape)
-$mobile-landscape: "(min-width: 481px) and (max-width: 767px)";
+// (min-width: 481px) and (max-width: 767px)
+$mobile-breakPoint-landscape : 767px;
 //Tablets, Ipads (portrait)
-$tablet-portrait: "(min-width: 768px) and (max-width: 1024px)";
+// (min-width: 768px) and (max-width: 1024px)
+$tablet-breakPoint : 1024px;
 //Tablets, Ipads (landscape)
-$tablet-landscape: "(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)";
+// (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)

@@ -1,7 +1,7 @@
 @import '../globalStyle';
 
 .Intro{
-  height: 100vh;
+  min-height: 100vh;
   background: rgb(15,183,134);
   background: linear-gradient(135deg, rgba(15,183,134,1) 0%, rgba(176,223,119,1) 100%);
   display: flex;
@@ -28,6 +28,17 @@
       flex-basis: 45%
     }
     
+    @media (max-width: $mobile-breakPoint-landscape){
+      flex-flow: column;
+      .IntroLeft{
+        order: 2;
+      }
+      .IntroRight{
+        order:1;
+        margin-bottom: 32px !important;
+      }
+    }
+    
     .IntroLeft{
       display: flex;
       flex-flow: column;
@@ -52,10 +63,17 @@
       }
       .IntroTitle{
         margin: 48px 0;
+        @media (max-width: $tablet-breakPoint){
+          margin: 24px 0;
+        }
         .title{
           color: $white;
           font-size: $largeFont;
           margin-bottom: 16px;
+          @media (max-width: $tablet-breakPoint){
+            font-size: $semiLargeFont;
+          }
+          
         }
         .subTitle{
           color:$offWhite;
@@ -71,11 +89,47 @@
     }
     
     .IntroRight{
-      padding: 28px;
+      padding: 40px 32px; 
       margin: 0;
       
       .Slider{
           margin-bottom: 56px;
+      }
+      
+      .CurrencyInput{
+        display: flex;
+        
+        .input{
+          flex-grow: 1;
+          
+          .label{
+            margin-right: 16px;
+          }
+        }
+        
+        .dropdown{
+          display: flex;
+          align-items: center;
+          img{
+            margin: 0 .5em 0 0;
+            position: relative;
+            top: 3px;
+          }
+        }
+      }
+      
+      .IntroRightBuffer{
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        
+        img{
+          margin: 0 12px;
+        }
+      }
+      
+      .continueBtn{
+        margin-top: 24px;
       }
     }
   }

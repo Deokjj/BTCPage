@@ -1,3 +1,5 @@
+@import './globalStyle';
+
 p{
   margin: 0;
 }
@@ -7,5 +9,13 @@ p{
   
   & > * {
     padding: 0 10%;
+    
+    @media (max-width: $mobile-breakPoint-landscape){
+      padding: 0 16px;
+    }
+    
+    @media (min-width: $mobile-breakPoint-landscape) and (max-width: $tablet-breakPoint){
+      padding: 0 32px;
+    }
   }
 }
