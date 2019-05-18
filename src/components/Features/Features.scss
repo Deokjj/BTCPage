@@ -1,0 +1,69 @@
+@import '../globalStyle';
+
+.Features{
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .FeatureCard{
+    padding: 0 10%;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    &:nth-child(1){
+      border-right: 1px solid $dividerColor;
+      border-bottom: 1px solid $dividerColor;
+    }
+    &:nth-child(2){
+      border-left: 1px solid $dividerColor;
+      border-bottom: 1px solid $dividerColor;
+    }
+    &:nth-child(3){
+      border-right: 1px solid $dividerColor;
+      border-top: 1px solid $dividerColor;
+    }
+    &:nth-child(4){
+      border-left: 1px solid $dividerColor;
+      border-top: 1px solid $dividerColor;
+    }
+    
+    .FeatureIcon{
+      background-color: $lightGreen;
+      height: 64px;
+      width: 64px;
+      border-radius: 32px;
+      text-align: center;
+      padding-top: 22px;
+      & > *{
+        font-size: 26px;
+        margin: 0;
+        color: $green;
+      }
+    }
+    
+    .FeatureName{
+      color: $green;
+      font-size: $smallFont;
+      font-weight: $boldFont;
+      margin: 16px 0;
+    }
+    
+    .Featuredetail{
+      color: $purple;
+      font-size: $smallFont;
+      font-weight : $regularFont;
+    }
+    
+    .FeatureLink{
+      color: $green;
+      font-size: $smallFont;
+      font-weight : $regularFont;
+      .icon{
+        font-size: 0.8em;
+      }
+    }
+  }
+}

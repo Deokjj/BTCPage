@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react'
 
 class IntroLeft extends React.Component {
   
@@ -32,6 +33,7 @@ class IntroLeft extends React.Component {
         title="Buy Bitcoin with Credit Card"
         subTitle="Catch mouse and gave it as a present chew the plant but scratch me there, elevator butt. Always ensure to lay down in such a manner that tail can lightly brush."
         />
+        <Button className="createAccount">Create Account</Button>
       </div>
     );
   }

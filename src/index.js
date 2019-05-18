@@ -4,6 +4,7 @@ import './index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import WebFont from 'webfontloader';
+import 'semantic-ui-css/semantic.min.css';
 
 WebFont.load({
   google: {
