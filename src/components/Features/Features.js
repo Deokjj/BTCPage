@@ -1,6 +1,6 @@
 import "./Features.scss";
 import React from 'react';
-import { Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react';
 
 class Features extends React.Component {
   render() {

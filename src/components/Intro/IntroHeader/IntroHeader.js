@@ -1,11 +1,11 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from 'semantic-ui-react';
 
 const IntroHeader = () =>{
   return (
     <div className="IntroHeader">
       <p>Changelly</p>
-      <p>Sign in <FontAwesomeIcon icon="arrow-right" className="faIcon" /></p>
+      <p>Sign in <Icon name="arrow right"/></p>
     </div>
   );
 

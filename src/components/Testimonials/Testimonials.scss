@@ -1,0 +1,88 @@
+@import '../globalStyle';
+
+.Testimonials{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  
+  .TestimonialsHeader{
+    max-width: 750px;
+    margin: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    .headerIcon{
+      background-color: $lightGreen;
+      height: 64px;
+      width: 64px;
+      border-radius: 32px;
+      text-align: center;
+      padding-top: 22px;
+      i{
+        font-size: 26px;
+        margin: 0;
+        color: $green;
+      }
+    }
+    
+    .headerTitle{
+      color: $green;
+      font-size: $mediumFont;
+      font-weight: $boldFont;
+      margin: 24px 0;
+    }
+    
+    .headerContent{
+      color: $purple;
+      font-size: $smallFont;
+      font-weight : $regularFont;
+    }
+  }
+  
+  .TestimonialCards{
+    width: 100%;
+    flex-grow: 1;
+    margin-bottom: 48px;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    .TestimonialCard{
+      flex-basis: 45%;
+      height: 200px;
+      margin: 0;
+      padding: 16px;
+      
+      display: flex;
+      align-items: center;
+      
+      .TestimonialPicture{
+        width: 108px;
+        height: 108px;
+        margin-right:16px;
+        
+      }
+      
+      .TestimonialContent{
+        
+        .name{
+          color:$green;
+          font-size: $smallFont;
+          font-weight: $boldFont;
+        }
+        
+        .testimonial{
+          color: $purple;
+          font-size: $smallFont;
+          font-weight : $regularFont;
+        }
+      }
+    }
+  }
+}

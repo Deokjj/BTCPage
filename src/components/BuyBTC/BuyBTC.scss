@@ -1,0 +1,40 @@
+@import '../globalStyle';
+
+.BuyBTC{
+  background-color: $dividerColor;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  
+  display: flex;
+  justify-content: space-between;
+  
+  .btcText{
+    p:nth-child(1){
+      font-size: $semiLargeFont;
+      color: $green;
+      margin-bottom: 12px;
+    }
+    p:nth-child(2){
+      font-size: $semiLargeFont;
+      color: $darkPurple;
+    }
+  }
+  
+  .buttons{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    button{
+      font-weight: $boldFont !important;
+      &:last-child{
+        color: $green;
+      }
+    }
+
+    .buffer{
+      flex-basis: 24px;
+    }
+  }
+}

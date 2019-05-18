@@ -15,7 +15,7 @@
     font-weight: $semiBoldFont;
     font-size: $mediumFont;
     color: $white;
-    .faIcon{
+    .icon{
       font-size: $smallFont;
     }
   }
@@ -47,7 +47,7 @@
           font-weight: $boldFont;
         }
         .message{
-          margin: 0 12px;
+          margin: 0 16px 0 12px;
         }
       }
       .IntroTitle{
@@ -65,7 +65,7 @@
       .createAccount{
         font-size: $mediumFont;
         font-weight: $boldFont;
-        background-color: $offWhite;
+        // background-color: $offWhite;
         color: $green;
       }
     }

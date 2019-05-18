@@ -1,0 +1,18 @@
+@import '../globalStyle';
+
+.Footer{
+    display: flex;
+    flex-flow: row;
+    margin: 32px auto;
+    color: $purple;
+    
+    p{
+      margin: 0
+    }
+    .bigBuffer{
+      flex-grow: 1;
+    }
+    .smallBuffer{
+      flex-basis: 32px;
+    }
+}
