@@ -39,9 +39,9 @@ class IntroRight extends React.Component {
       
       return (
         <div className="Slider">
-        <Slider min={0} max={115}
-          railStyle={railStyle} handleStyle={handleStyle} trackStyle={trackStyle} dotStyle={dotStyle}
-          marks={marks} included={false} defaultValue={1}/>
+          <Slider min={0} max={115}
+            railStyle={railStyle} handleStyle={handleStyle} trackStyle={trackStyle} dotStyle={dotStyle}
+            marks={marks} defaultValue={1}/>
         </div>
       );
     };
@@ -85,7 +85,7 @@ class IntroRight extends React.Component {
       const { options, inputLabel } = props;
       return inputLabel ? (
         <Segment className="CurrencyInput">
-          <Input transparent>
+          <Input transparent fluid>
             <Label basic>$</Label>
             <input />
           </Input>
@@ -93,7 +93,7 @@ class IntroRight extends React.Component {
         </Segment>
       ): (
         <Segment className="CurrencyInput">
-          <Input transparent />
+          <Input transparent fluid/>
           <Dropdown options={options} defaultValue={options[0]['value']}/>
         </Segment>
       );

@@ -2,18 +2,25 @@
 
 .Features{
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  @media(max-width: $tablet-breakPoint){
+    min-height: inherit;
+  }
   .FeatureCard{
-    padding: 0 10%;
+    padding: 64px 10%;
     flex-basis: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     border-bottom: 1px solid $dividerColor;
+    @media(max-width: $tablet-breakPoint){
+      padding: 32px 10%;
+      justify-content: flex-start;
+    }
     &:nth-child(1){
       border-right: 1px solid $dividerColor;
     }
@@ -65,4 +72,30 @@
       }
     }
   }
+}
+@media (max-width: $mobile-breakPoint){
+    .Features{
+    display: flex;
+    flex-direction: column;
+    .FeatureCard{
+      padding: 32px 16px;
+      align-items: center;
+      border-bottom: 1px solid $dividerColor;
+      &:nth-child(1){
+        border-right: 1px solid $dividerColor;
+      }
+      &:nth-child(2){
+        border-left: none;
+      }
+      &:nth-child(3){
+        border-right: none;
+        border-top: none;
+      }
+      &:nth-child(4){
+        border-left: none;
+        border-top: none;
+      }
+    }
+  }
+  
 }

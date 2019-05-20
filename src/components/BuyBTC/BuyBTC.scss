@@ -8,7 +8,15 @@
   display: flex;
   justify-content: space-between;
   
+  @media (max-width: $mobile-breakPoint){
+    flex-direction: column;
+  }
+  
   .btcText{
+    
+    @media (max-width: $mobile-breakPoint){
+        margin-bottom: 32px;
+    }
     p:nth-child(1){
       font-size: $semiLargeFont;
       color: $green;

@@ -28,23 +28,13 @@
       flex-basis: 45%
     }
     
-    @media (max-width: $mobile-breakPoint-landscape){
-      flex-flow: column;
-      .IntroLeft{
-        order: 2;
-      }
-      .IntroRight{
-        order:1;
-        margin-bottom: 32px !important;
-      }
-    }
-    
     .IntroLeft{
       display: flex;
       flex-flow: column;
       align-items: flex-start;
       .IntroMessage{
-        height: 32px;
+        height: auto;
+        padding: 8px 0;
         background-color: rgba(217,252,255,0.3);
         border-radius: 16px;
         color: $white;
@@ -63,16 +53,11 @@
       }
       .IntroTitle{
         margin: 48px 0;
-        @media (max-width: $tablet-breakPoint){
-          margin: 24px 0;
-        }
+        
         .title{
           color: $white;
           font-size: $largeFont;
           margin-bottom: 16px;
-          @media (max-width: $tablet-breakPoint){
-            font-size: $semiLargeFont;
-          }
           
         }
         .subTitle{
@@ -103,7 +88,7 @@
           flex-grow: 1;
           
           .label{
-            margin-right: 16px;
+            // margin-right: 16px;
           }
         }
         
@@ -136,5 +121,32 @@
   
   .IntroFooterBuffer{
     height: 65px;
+  }
+}
+
+@media (max-width: $mobile-breakPoint-landscape){
+  .Intro{
+    .IntroContent{
+      flex-flow: column;
+      .IntroLeft{
+        order: 2;
+        align-items: inherit;
+        .IntroTitle{
+          margin: 24px 0;
+          .title{
+            font-size: $mobileLargeFont;
+            text-align: center;
+          }
+        }
+      }
+      .IntroRight{
+        order:1;
+        margin-bottom: 32px !important;
+        
+        .rc-slider-mark{
+            font-size: 10px;
+        }
+      }
+    }
   }
 }

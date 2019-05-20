@@ -1,7 +1,7 @@
 @import '../globalStyle';
 
 .Testimonials{
-  height: 100vh;
+  // min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +14,10 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
+    @media (max-width: $mobile-breakPoint){
+      margin: 48px 16px;
+    }
     
     .headerIcon{
       background-color: $lightGreen;
@@ -53,14 +57,24 @@
     flex-wrap: wrap;
     justify-content: space-between;
     
+    @media (max-width: $mobile-breakPoint-landscape){
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
     .TestimonialCard{
       flex-basis: 45%;
       height: 200px;
-      margin: 0;
+      margin: 0 0 32px 0;
       padding: 16px;
       
       display: flex;
       align-items: center;
+      
+      @media (max-width: $mobile-breakPoint-landscape){
+        flex-basis: 100%;
+        height: 200px;
+        margin: 8px 0;
+      }
       
       .TestimonialPicture{
         width: 108px;
@@ -75,6 +89,10 @@
           color:$green;
           font-size: $smallFont;
           font-weight: $boldFont;
+          
+          @media (max-width: $mobile-breakPoint-landscape){
+            margin: 0 0 12px;
+          }
         }
         
         .testimonial{

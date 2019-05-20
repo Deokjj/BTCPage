@@ -16,3 +16,21 @@
       flex-basis: 32px;
     }
 }
+
+@media (max-width: $mobile-breakPoint){
+  .Footer{
+    flex-wrap: wrap;
+      .rights{
+        order: 2;
+        flex-basis: 100%;
+        margin-top: 32px;
+      }
+      .bigBuffer{
+        flex-grow: 0;
+        flex-basis: 0;
+      }
+      .smallBuffer{
+        flex-grow: 1;
+      }
+  }
+}
