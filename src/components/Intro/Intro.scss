@@ -111,6 +111,14 @@
         img{
           margin: 0 12px;
         }
+        
+        span{
+          font-weight: $semiBoldFont;
+          color: #999;
+          .inputDisplay{
+              color: black;
+          }
+        }
       }
       
       .continueBtn{
@@ -129,8 +137,8 @@
     .IntroContent{
       flex-flow: column;
       .IntroLeft{
-        order: 2;
         align-items: inherit;
+        margin-bottom: 32px;
         .IntroTitle{
           margin: 24px 0;
           .title{
@@ -140,8 +148,6 @@
         }
       }
       .IntroRight{
-        order:1;
-        margin-bottom: 32px !important;
         
         .rc-slider-mark{
             font-size: 10px;

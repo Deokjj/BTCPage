@@ -1,51 +1,91 @@
 import React from 'react';
-import { Segment, Input, Label, Dropdown, Flag, Button } from 'semantic-ui-react'
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import { Segment, Flag, Button } from 'semantic-ui-react'
+import BtcSlider from './BtcSlider/BtcSlider';
+import CurrencyInput from './CurrencyInput/CurrencyInput';
 import dots from '../../../assets/dots.png';
 import btc from '../../../assets/btc.png';
+import axios from 'axios';
 
 class IntroRight extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      currencyFrom : 'USD',
+      currencyTo : 'BTC',
+      amountFrom : 2000,
+      amountTo : '',
+      rates : undefined,
+    }
+    
+    this.setAmount = this.setAmount.bind(this);
+  }
+  
+  componentDidMount() {
+    this.getRates("BTC" ,["USD","CAD","KRW"]);
+  }
+  
+  getRates(currency, ratesFor) {
+    const body = {
+      currency : currency,
+      ratesFor : ratesFor
+    }
+
+    axios.post('http://localhost:5000/coinbase/currency', body)
+    .then((res)=>{
+      const rates = res.data;
+      const newAmountTo = 
+      (this.state.amountFrom / rates[this.state.currencyFrom]).toFixed(7);
+      this.setState({
+        rates : rates,
+        amountTo : newAmountTo
+      });
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+  }
+  
+  setAmount( value, origin ){
+    // 1st currency input change
+    if(origin === 'from'){
+      this.setAmountFrom(value);
+      const newAmountTo = value / this.state.rates[this.state.currencyFrom];
+      this.setAmountTo(newAmountTo);
+    }
+    // 2nd currence input OR Slider change
+    else {
+      this.setAmountTo(value);
+      const newAmountFrom = value * this.state.rates[this.state.currencyFrom];
+      this.setAmountFrom(newAmountFrom);
+    }
+  }
+  
+  setAmountFrom( value ) {
+    //input decimal check - only allow up to 2nd decimal
+    value = value.toString();
+    if(value.indexOf(".") !== -1){
+      value = value.slice(0, value.indexOf(".")+3);
+    }
+    
+    this.setState({
+      amountFrom : value
+    });
+  }
+  
+  setAmountTo( value ){
+    //input decimal check - only allow up to 8nd decimal
+    value = value.toString();
+    if(value.indexOf(".") !== -1){
+      value = value.slice(0, value.indexOf(".")+9);
+    }
+    
+    this.setState({
+      amountTo : value
+    });
+  }
   
   
   render() {
-    const BtcSlider = (props) => {
-      const railStyle = {height:16};
-      const handleStyle = [{width: 26, height: 26, marginLeft: -13, borderColor:'#B9F4BC'}];
-      const trackStyle = [{height:16, backgroundColor: '#B9F4BC'}];
-      const dotStyle = {bottom: -26, margin:0, width: 0, 
-        borderRadius: 0, borderLeft: '1px solid #e9e9e9', borderRight: 0,
-        borderTop:0, borderBottom:0};
-      const markLabel = (label) => {
-        return {
-          style:{marginTop: 18},
-          label: label
-        };
-      };
-      const marks = {
-        5: markLabel(0.05),
-        15:markLabel(0.15),
-        25:markLabel(0.25),
-        35:markLabel(0.35),
-        45:markLabel(0.45),
-        55:markLabel(0.55),
-        65:markLabel(0.65),
-        75:markLabel(0.75),
-        85:markLabel(0.85),
-        95:markLabel(0.95),
-        105:markLabel(1.05),
-        115:markLabel(1.15)
-      };
-      
-      return (
-        <div className="Slider">
-          <Slider min={0} max={115}
-            railStyle={railStyle} handleStyle={handleStyle} trackStyle={trackStyle} dotStyle={dotStyle}
-            marks={marks} defaultValue={1}/>
-        </div>
-      );
-    };
-    
     const getCountry = (flagName, currencyCode) =>{
       return (
         <div><Flag name={flagName} /> {currencyCode}</div>
@@ -55,7 +95,7 @@ class IntroRight extends React.Component {
     const currencyOptions = [
       {
         key  : 'USD',
-        text : getCountry('us','USA'),
+        text : getCountry('us','USD'),
         value: 'USD',
       },
       {
@@ -65,9 +105,9 @@ class IntroRight extends React.Component {
         
       },
       {
-        key  : 'WON',
-        text : getCountry('kr','WON'),
-        value: 'WON',
+        key  : 'KRW',
+        text : getCountry('kr','KRW'),
+        value: 'KRW',
       }
     ];
     
@@ -81,32 +121,23 @@ class IntroRight extends React.Component {
       }
     ];
     
-    const CurrencyInput = (props) => {
-      const { options, inputLabel } = props;
-      return inputLabel ? (
-        <Segment className="CurrencyInput">
-          <Input transparent fluid>
-            <Label basic>$</Label>
-            <input />
-          </Input>
-          <Dropdown options={options} defaultValue={options[0]['value']}/>
-        </Segment>
-      ): (
-        <Segment className="CurrencyInput">
-          <Input transparent fluid/>
-          <Dropdown options={options} defaultValue={options[0]['value']}/>
-        </Segment>
-      );
-    };
-    
     return (
       <Segment className="IntroRight">
-        <BtcSlider />
-        <CurrencyInput options={currencyOptions} inputLabel={true}/>
+        <BtcSlider value={this.state.amountTo}
+        onChange={this.setAmount}
+        />
+        <CurrencyInput options={currencyOptions} inputLabel from
+        value={this.state.amountFrom}
+        onChange={this.setAmount} 
+        />
         <div className = "IntroRightBuffer">
-          <img src={dots} alt='dots' /> <span>For 200 USD you will get 0.75454 Bitcoin</span>
+          <img src={dots} alt='dots' /> 
+          <span>For <span className="inputDisplay">${this.state.amountFrom} USD</span> you will get <span className="inputDisplay">{this.state.amountTo} Bitcoin</span></span>
         </div>
-        <CurrencyInput options={btcOptions} />
+        <CurrencyInput options={btcOptions} to
+        value={this.state.amountTo}
+        onChange={this.setAmount} 
+        />
         <Button className="continueBtn" color='green' fluid size='large'>Continue</Button>
       </Segment>
     );
