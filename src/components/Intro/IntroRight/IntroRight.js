@@ -18,6 +18,7 @@ class IntroRight extends React.Component {
     }
     
     this.setAmount = this.setAmount.bind(this);
+    this.setCurrency = this.setCurrency.bind(this);
   }
   
   componentDidMount() {
@@ -29,12 +30,12 @@ class IntroRight extends React.Component {
       currency : currency,
       ratesFor : ratesFor
     }
-
+  
     axios.post('http://localhost:5000/coinbase/currency', body)
     .then((res)=>{
       const rates = res.data;
       const newAmountTo = 
-      (this.state.amountFrom / rates[this.state.currencyFrom]).toFixed(7);
+      (this.state.amountFrom / rates[this.state.currencyFrom]).toFixed(8);
       this.setState({
         rates : rates,
         amountTo : newAmountTo
@@ -45,6 +46,23 @@ class IntroRight extends React.Component {
     });
   }
   
+  setCurrency( value, origin ){
+    // 1st currency change
+    if(origin === 'from'){
+      this.setState({
+        currencyFrom : value
+      },()=>{
+        const newAmountFrom = this.state.amountTo * this.state.rates[value];
+        this.setAmountFrom(newAmountFrom);
+      });
+    }
+    // 2nd currency change
+    else{
+      // currently only supporting BTC
+      return;
+    }
+  }
+  
   setAmount( value, origin ){
     // 1st currency input change
     if(origin === 'from'){
@@ -52,7 +70,7 @@ class IntroRight extends React.Component {
       const newAmountTo = value / this.state.rates[this.state.currencyFrom];
       this.setAmountTo(newAmountTo);
     }
-    // 2nd currence input OR Slider change
+    // 2nd currency input OR Slider change
     else {
       this.setAmountTo(value);
       const newAmountFrom = value * this.state.rates[this.state.currencyFrom];
@@ -127,12 +145,14 @@ class IntroRight extends React.Component {
         onChange={this.setAmount}
         />
         <CurrencyInput options={currencyOptions} inputLabel from
-        value={this.state.amountFrom}
+        value={this.state.amountFrom} 
         onChange={this.setAmount} 
+        currencyValue={this.state.currencyFrom}
+        onCurrencyChange={this.setCurrency}
         />
         <div className = "IntroRightBuffer">
           <img src={dots} alt='dots' /> 
-          <span>For <span className="inputDisplay">${this.state.amountFrom} USD</span> you will get <span className="inputDisplay">{this.state.amountTo} Bitcoin</span></span>
+          <span>For <span className="inputDisplay">${this.state.amountFrom} {this.state.currencyFrom}</span> you will get <span className="inputDisplay">{this.state.amountTo} Bitcoin</span></span>
         </div>
         <CurrencyInput options={btcOptions} to
         value={this.state.amountTo}

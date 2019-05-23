@@ -1,0 +1,26 @@
+@import '../../../globalStyle';
+
+.SignupModal{
+  .modalWrapper{
+    display: flex;
+    flex-direction: row;
+    
+    .content{
+      flex-grow: 1;
+      padding: 32px
+    }
+  }
+}
+
+@media (max-width: $mobile-breakPoint){
+  .SignupModal{
+    .modalWrapper{
+      flex-direction: column;
+      
+      .content{
+        flex-grow: 1;
+        padding: 16px
+      }
+    }
+  }
+}

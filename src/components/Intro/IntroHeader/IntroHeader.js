@@ -1,11 +1,12 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
+// import { Icon } from 'semantic-ui-react';
+import SignupModal from './SignupModal/SignupModal';
 
 const IntroHeader = () =>{
   return (
     <div className="IntroHeader">
       <p>Changelly</p>
-      <p>Sign in <Icon name="arrow right"/></p>
+      <SignupModal />
     </div>
   );
 
