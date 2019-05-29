@@ -6,6 +6,8 @@ import dots from '../../../assets/dots.png';
 import btc from '../../../assets/btc.png';
 import axios from 'axios';
 
+const apiAdress = process.env.REACT_APP_API_ADDRESS || "https://btc-server.herokuapp.com";
+
 class IntroRight extends React.Component {
   constructor(props){
     super(props);
@@ -31,7 +33,7 @@ class IntroRight extends React.Component {
       ratesFor : ratesFor
     }
   
-    axios.post('http://localhost:5000/coinbase/currency', body)
+    axios.post(`${apiAdress}/coinbase/currency`, body)
     .then((res)=>{
       const rates = res.data;
       const newAmountTo = 

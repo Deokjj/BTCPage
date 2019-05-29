@@ -3,6 +3,8 @@ import { Button } from 'semantic-ui-react';
 import SignupModal from './SignupModal/SignupModal';
 import axios from 'axios';
 
+const apiAdress = process.env.REACT_APP_API_ADDRESS || "https://btc-server.herokuapp.com";
+
 class IntroHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -13,22 +15,22 @@ class IntroHeader extends React.Component {
     this.signUp = this.signUp.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.checkLogin = this.checkLogin.bind(this);
+    // this.checkLogin = this.checkLogin.bind(this);
   }
   
   componentDidMount() {
-    this.checkLogin();
+    // this.checkLogin();
   }
   
-  checkLogin() {
-    axios.get('http://localhost:5000/user/checklogin')
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log(err);
-    });
-  }
+  // checkLogin() {
+  //   axios.get(`${apiAdress}/user/checklogin`)
+  //   .then((res)=>{
+  //     console.log(res);
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err);
+  //   });
+  // }
   
   signUp(email, password, name){
     const body = {
@@ -37,7 +39,7 @@ class IntroHeader extends React.Component {
       name : name
     };
     
-    axios.post('http://localhost:5000/user/signup',body)
+    axios.post(`${apiAdress}/user/signup`,body)
     .then((res)=>{
       console.log([res, res.data]);
       this.setState({
@@ -55,7 +57,7 @@ class IntroHeader extends React.Component {
       password : password
     }
     
-    axios.post('http://localhost:5000/user/login', body)
+    axios.post(`${apiAdress}/user/login`, body)
     .then((res)=>{
       console.log([res, res.data]);
       this.setState({
@@ -68,7 +70,7 @@ class IntroHeader extends React.Component {
   }
   
   logOut() {
-    axios.post('http://localhost:5000/user/logout')
+    axios.post(`${apiAdress}/user/logout`)
     .then((res)=>{
       console.log(res);
       this.setState({ user : undefined });
